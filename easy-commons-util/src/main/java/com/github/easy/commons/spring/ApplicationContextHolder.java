@@ -1,7 +1,7 @@
 package com.github.easy.commons.spring;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,13 +16,13 @@ import org.springframework.context.ApplicationContextAware;
  */
 public class ApplicationContextHolder implements ApplicationContextAware{
 
-	private static Log log = LogFactory.getLog(ApplicationContextHolder.class);
+	private static Logger logger = LoggerFactory.getLogger(ApplicationContextHolder.class);
 	private static ApplicationContext applicationContext;
 	
 	@SuppressWarnings("all")
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		this.applicationContext = context;
-		log.info("holded applicationContext,displayName:"+applicationContext.getDisplayName());
+		logger.info("holded applicationContext,displayName:"+applicationContext.getDisplayName());
 	}
 	
 	public static ApplicationContext getApplicationContext() {

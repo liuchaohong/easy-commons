@@ -1,4 +1,4 @@
-package com.github.easy.commons.compress;
+package com.github.easy.commons.util.compress;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

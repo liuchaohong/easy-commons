@@ -1,4 +1,4 @@
-package com.github.easy.commons.spring;
+package com.github.easy.commons.util.spring;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

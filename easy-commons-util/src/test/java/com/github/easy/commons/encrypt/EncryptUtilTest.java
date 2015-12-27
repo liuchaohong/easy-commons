@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
+import com.github.easy.commons.util.encrypt.EncryptUtil;
+
 
 public class EncryptUtilTest {
 

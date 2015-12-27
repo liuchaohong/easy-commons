@@ -13,14 +13,14 @@ import org.springframework.beans.factory.InitializingBean;
 
 public class EsClient implements InitializingBean,DisposableBean{
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(EsClient.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(EsClient.class);
 	
 	/** 集群名称 */
 	private String clusterName;
 	/** 节点地址 */
-	private String host;
+	private String host = "localhost";
 	/** 节点端口 */
-	private Integer port;
+	private Integer port = 9200;
 	/** 客户端 */
 	private Client client;
 	
@@ -34,6 +34,10 @@ public class EsClient implements InitializingBean,DisposableBean{
 
 	public void setClusterName(String clusterName) {
 		this.clusterName = clusterName;
+	}
+
+	public Client getClient() {
+		return client;
 	}
 
 	public void afterPropertiesSet() throws Exception {

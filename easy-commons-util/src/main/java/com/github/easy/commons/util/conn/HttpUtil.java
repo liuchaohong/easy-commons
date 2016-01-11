@@ -13,12 +13,14 @@ import org.apache.commons.lang.StringUtils;
  * @author LIUCHAOHONG
  *
  */
-public class UrlConnUtil {
+public class HttpUtil {
 	
 	public static String POST = "POST";
 	public static String GET = "GET";
+	public static String DELETE = "DELETE";
 	public static String FormEncodedUTF8 = "application/x-www-form-urlencoded;charset=UTF-8";
-
+	public static String FormJson = "application/json;charset=UTF-8";
+	
 	/**
 	 * 建POST URL立连接，并发送数据
 	 * @param url
@@ -27,11 +29,29 @@ public class UrlConnUtil {
 	 * @throws IOException
 	 */
 	public static String urlPOSTRequest(String url, String params) throws ProtocolException, IOException {
-		HttpURLConnection c = getUrlConnectionPOST(url);
-		c.getOutputStream().write(params.getBytes());
-		c.getOutputStream().flush();
+		HttpURLConnection c = getUrlConnectionPOST(url, FormEncodedUTF8);
+		if (StringUtils.isNotBlank(params)) {
+			c.getOutputStream().write(params.getBytes());
+			c.getOutputStream().flush();
+		}
 		return IOUtils.toString(c.getInputStream());
 	}
+	
+	/**
+	 * 建POST URL立连接，并发送json数据
+	 * @param url
+	 * @param params
+	 * @throws ProtocolException
+	 * @throws IOException
+	 */
+	public static String urlPOSTJsonRequest(String url, String params) throws ProtocolException, IOException {
+		HttpURLConnection c = getUrlConnectionPOST(url, FormJson);
+		if (StringUtils.isNotBlank(params)) {
+			c.getOutputStream().write(params.getBytes());
+			c.getOutputStream().flush();
+		}
+		return IOUtils.toString(c.getInputStream());
+	}	
 	
 	/**
 	 * 建立POST URL连接
@@ -40,8 +60,9 @@ public class UrlConnUtil {
 	 * @throws IOException
 	 * @throws ProtocolException
 	 */
-	public static HttpURLConnection getUrlConnectionPOST(String url) throws IOException, ProtocolException {
-		return getUrlConnection(url, POST, FormEncodedUTF8);
+	public static HttpURLConnection getUrlConnectionPOST(String url, String contentType) throws IOException, ProtocolException {
+		contentType = StringUtils.defaultIfEmpty(contentType, FormEncodedUTF8);
+		return getUrlConnection(url, POST, contentType);
 	}
 	
 	/**
@@ -64,6 +85,28 @@ public class UrlConnUtil {
 	 */
 	public static HttpURLConnection getUrlConnectionGET(String url) throws IOException, ProtocolException {
 		return getUrlConnection(url, GET, FormEncodedUTF8);
+	}
+
+	/**
+	 * 建DELETE URL立连接，并发送数据
+	 * @param url
+	 * @throws ProtocolException
+	 * @throws IOException
+	 */
+	public static String urlDELETERequest(String url) throws ProtocolException, IOException {
+		HttpURLConnection c = getUrlConnectionDelete(url);
+		return IOUtils.toString(c.getInputStream());
+	}
+	
+	/**
+	 * 建立DELETE URL连接
+	 * @param urlStr
+	 * @return
+	 * @throws IOException
+	 * @throws ProtocolException
+	 */	
+	public static HttpURLConnection getUrlConnectionDelete(String url) throws IOException, ProtocolException {
+		return getUrlConnection(url, DELETE, FormEncodedUTF8);
 	}
 	
 	/**
@@ -103,7 +146,7 @@ public class UrlConnUtil {
 		int flag = 0;
 		while(flag < maxRetryNum) {
 			try {
-				return UrlConnUtil.urlPOSTRequest(requestUrl, params);
+				return HttpUtil.urlPOSTRequest(requestUrl, params);
 			} catch (Throwable e) {
 				e.printStackTrace();
 				if( targeServiceIsAlive(isAliveMonitorUrl) ) {
@@ -129,7 +172,7 @@ public class UrlConnUtil {
 	public static boolean targeServiceIsAlive(String isAliveMonitorUrl) {
 		String httpReturnResult = null;
 		try {
-			httpReturnResult = UrlConnUtil.urlGETRequest(isAliveMonitorUrl);
+			httpReturnResult = HttpUtil.urlGETRequest(isAliveMonitorUrl);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -138,4 +181,5 @@ public class UrlConnUtil {
 		}
 		return false;
 	}
+	
 }

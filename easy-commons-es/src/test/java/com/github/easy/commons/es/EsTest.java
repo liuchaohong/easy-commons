@@ -1,5 +1,7 @@
 package com.github.easy.commons.es;
 
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -12,18 +14,29 @@ import com.github.easy.commons.es.EsService;
  */
 public class EsTest {
 	
-	private ApplicationContext ctx;
 	private EsService esService;
 	
 	@Before
 	public void before(){
-		ctx = new ClassPathXmlApplicationContext("classpath:spring/*.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/*.xml");
+		esService = (EsService) ctx.getBean("esService");
 	}
 	
 	@Test
-	public void testEs(){
-		esService = (EsService) ctx.getBean("esService");
-		esService.createIndex("movies");
+	public void createIndex(){
+		boolean result = esService.createIndex("movies");
+		System.out.println(result);
+	}
+
+	@Test
+	public void getAllIndex(){
+		Set<String> indexs = esService.getAllIndex();
+		System.out.println(indexs);
 	}
 	
+	@Test
+	public void deleteIndex(){
+		boolean result = esService.deleteIndex("goods");
+		System.out.println(result);
+	}
 }

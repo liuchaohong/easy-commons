@@ -1,6 +1,12 @@
 package com.github.easy.commons.es;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +35,24 @@ public class EsServiceImpl implements EsService {
 		IndicesExistsResponse indicesExistsResponse = esClient.getClient().admin().indices().prepareExists(index).execute().actionGet();
 		boolean result = indicesExistsResponse.isExists();
 		LOGGER.info("index["+index+"] isExists:"+result);
+		return result;
+	}
+
+	public Set<String> getAllIndex() {
+		ClusterStateResponse clusterStateResponse = esClient.getClient().admin().cluster().prepareState().execute().actionGet();
+		String[] indices = clusterStateResponse.getState().getMetaData().concreteAllIndices();
+		Set<String> indiceSet=new HashSet<String>();
+		indiceSet.addAll(Arrays.asList(indices));
+		return indiceSet;
+	}
+
+	public boolean deleteIndex(String index) {
+		if (!isExistsIndex(index)) {
+			return true;
+		}
+		DeleteIndexResponse deleteIndexResponse = esClient.getClient().admin().indices().prepareDelete(index).execute().actionGet();
+		boolean result = deleteIndexResponse.isAcknowledged();
+		LOGGER.info("delete index["+index+"]:"+result);
 		return result;
 	}
 

@@ -21,6 +21,13 @@
   
   	<dependencies>
 
+		<!-- project dependency -->
+		<dependency>
+			  <groupId>com.github.easy.commons</groupId>
+			  <artifactId>easy-commons-util</artifactId>
+			  <version>1.0</version>
+		</dependency>	  
+		
 		<!-- spring begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>

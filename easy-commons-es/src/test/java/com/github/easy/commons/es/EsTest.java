@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.github.easy.commons.es.service.EsService;
+
 /**
  * 直接下载：
  * https://www.elastic.co/downloads/elasticsearch

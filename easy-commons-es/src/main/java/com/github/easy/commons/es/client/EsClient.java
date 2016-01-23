@@ -1,4 +1,4 @@
-package com.github.easy.commons.es;
+package com.github.easy.commons.es.client;
 
 import java.net.InetAddress;
 

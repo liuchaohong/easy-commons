@@ -100,13 +100,6 @@
 				<version>${spring.version}</version>
 			</dependency>
 		
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-		    </dependency>
-
 			<!-- jetty -->
 			<dependency>
 				<groupId>org.mortbay.jetty</groupId>
@@ -230,7 +223,13 @@
 		</dependency>
 		<!-- logging end -->
 		
-		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+	    </dependency>		
+	    
 	</dependencies>
 			 
 </project>

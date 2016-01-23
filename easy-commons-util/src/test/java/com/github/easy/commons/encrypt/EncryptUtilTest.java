@@ -1,6 +1,6 @@
 package com.github.easy.commons.encrypt;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;

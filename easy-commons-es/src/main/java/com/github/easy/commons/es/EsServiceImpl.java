@@ -8,6 +8,7 @@ import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
+import org.elasticsearch.common.settings.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,11 +22,18 @@ public class EsServiceImpl implements EsService {
 		this.esClient = esClient;
 	}
 
-	public boolean createIndex(String index) {
+	public boolean createIndex(String index){
+		return createIndex(index, null);
+	}
+			
+	public boolean createIndex(String index, Settings settings) {
 		if (isExistsIndex(index)) {
 			return true;
 		}
-		CreateIndexResponse createIndexResponse = esClient.getClient().admin().indices().prepareCreate(index).execute().actionGet();
+		if(settings == null){
+			settings = Settings.EMPTY;
+		}
+		CreateIndexResponse createIndexResponse = esClient.getClient().admin().indices().prepareCreate(index).setSettings(settings).execute().actionGet();
 		boolean result = createIndexResponse.isAcknowledged();
 		LOGGER.info("create index["+index+"]:"+result);
 		return result;

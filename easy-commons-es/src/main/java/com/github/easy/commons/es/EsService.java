@@ -2,6 +2,8 @@ package com.github.easy.commons.es;
 
 import java.util.Set;
 
+import org.elasticsearch.common.settings.Settings;
+
 public interface EsService {
 
 	/**
@@ -10,6 +12,14 @@ public interface EsService {
 	 * @return
 	 */
 	public boolean createIndex(String index);
+	
+	/**
+	 * 创建索引
+	 * @param index
+	 * @param settings
+	 * @return
+	 */
+	public boolean createIndex(String index, Settings settings);
 	
 	/**
 	 * 判断索引是否存在
@@ -30,4 +40,7 @@ public interface EsService {
 	 * @return
 	 */
 	public boolean deleteIndex(String index);
+	
+	
+	
 }

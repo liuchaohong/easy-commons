@@ -10,7 +10,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.github.easy.commons.es.EsService;
 
 /**
- * Unit test for simple App.
+ * 直接下载：
+ * https://www.elastic.co/downloads/elasticsearch
+ * 本地运行bin/elasticsearch.bat
  */
 public class EsTest {
 	
@@ -18,13 +20,13 @@ public class EsTest {
 	
 	@Before
 	public void before(){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/*.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:spring/*.xml");
 		esService = (EsService) ctx.getBean("esService");
 	}
 	
 	@Test
 	public void createIndex(){
-		boolean result = esService.createIndex("movies");
+		boolean result = esService.createIndex("movies3");
 		System.out.println(result);
 	}
 
@@ -39,4 +41,17 @@ public class EsTest {
 		boolean result = esService.deleteIndex("goods");
 		System.out.println(result);
 	}
+	
+	@Test
+	public void isExistsIndex(){
+		boolean result = esService.isExistsIndex("movies");
+		System.out.println(result);
+	}
+	
+	
+	
+	
+	
+	
+	
 }

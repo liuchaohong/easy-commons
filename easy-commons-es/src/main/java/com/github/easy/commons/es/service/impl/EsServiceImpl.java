@@ -52,7 +52,7 @@ public class EsServiceImpl implements EsService {
 	
 	protected EsClient esClient;
 
-	protected String idName="id";
+	protected String idName = "id";
 	
 	protected IdWorker idWorker;
 	

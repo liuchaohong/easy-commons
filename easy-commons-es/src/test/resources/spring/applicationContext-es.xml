@@ -7,13 +7,13 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"    default-autowire="byName" default-lazy-init="false">
 	
-	<bean id="esClient" class=" com.github.easy.commons.es.EsClient">
+	<bean id="esClient" class=" com.github.easy.commons.es.client.EsClient">
 		<property name="clusterName" value="elasticsearch"></property>
 		<property name="host" value="localhost"></property>
 		<property name="port" value="9300"></property>
 	</bean>
 	
-	<bean id="esService" class="com.github.easy.commons.es.EsServiceImpl" >
+	<bean id="esService" class="com.github.easy.commons.es.service.impl.EsServiceImpl" >
 		<property name="esClient" ref="esClient" />
 	</bean>
 		

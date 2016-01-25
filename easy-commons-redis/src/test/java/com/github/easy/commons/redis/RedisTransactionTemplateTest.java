@@ -15,6 +15,7 @@ public class RedisTransactionTemplateTest extends Assert {
 
 	JedisPool jedisPool = new JedisPool("113.108.228.101");
 	String key = ""+System.currentTimeMillis();
+	
 	@Test
 	public void test1() throws Exception {
 		RedisTemplate t = new RedisTemplate();

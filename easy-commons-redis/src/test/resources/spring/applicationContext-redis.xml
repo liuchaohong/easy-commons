@@ -16,7 +16,7 @@
 	 -->
 	 
 	<!-- redis数据源 -->
-	<bean id ="jedisPool" class="com.github.easy.commons.redis.JedisPoolFactoryBean" >
+	<bean id ="jedisPool" class="com.github.easy.commons.redis.JedisPoolFactoryBean">
 		   <!--  
 	       <property name ="poolConfig" ref="redisPoolConfig" />
 	       -->	
@@ -25,7 +25,7 @@
 	       <property name ="timeout" value="60000" />
 	</bean>
 	
-	<bean id ="redisTemplate" class="com.github.easy.commons.redis.RedisTemplate" >
+	<bean id ="redisTemplate" class="com.github.easy.commons.redis.RedisTemplate">
 	       <property name ="jedisPool" ref="jedisPool" />
 	</bean>
 

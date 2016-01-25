@@ -9,7 +9,7 @@ import redis.clients.jedis.Transaction;
  * @see RedisTemplate
  * @param <T>
  */
-public interface RedisTransactionCallback <T> {
+public interface RedisTransactionCallback<T> {
 
 	public T doInTransaction(Transaction tran);
 	

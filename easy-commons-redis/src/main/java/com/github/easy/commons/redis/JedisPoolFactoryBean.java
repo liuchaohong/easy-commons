@@ -12,13 +12,14 @@ import org.springframework.util.Assert;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Protocol;
+
 /**
  * 用于spring生成JedisPool的FactoryBean
  * 
  */
-public class JedisPoolFactoryBean implements FactoryBean<JedisPool>, InitializingBean,DisposableBean {
-	protected static final Logger log = LoggerFactory.getLogger(JedisPoolFactoryBean.class);
+public class JedisPoolFactoryBean implements FactoryBean<JedisPool>, InitializingBean, DisposableBean {
 	
+	protected static final Logger LOGGER = LoggerFactory.getLogger(JedisPoolFactoryBean.class);
 	
 	private int timeout = Protocol.DEFAULT_TIMEOUT;
 	private int database = Protocol.DEFAULT_DATABASE;
@@ -235,8 +236,8 @@ public class JedisPoolFactoryBean implements FactoryBean<JedisPool>, Initializin
 
 	public void afterPropertiesSet() throws Exception {
 		Assert.notNull(poolConfig,"poolConfig must be not null");
-		jedisPool = new JedisPool(poolConfig, host, port, timeout,password, database);
-		log.info("created JedisPool "+this);
+		jedisPool = new JedisPool(poolConfig, host, port, timeout, password, database);
+		LOGGER.info("created JedisPool "+this);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import redis.clients.jedis.Jedis;
  * @see RedisTemplate
  * @param <T>
  */
-public interface RedisCallback <T>{
+public interface RedisCallback<T> {
 	
 	public T doInRedis(Jedis jedis);
 	

@@ -12,7 +12,7 @@ import redis.clients.jedis.JedisPool;
  * Jedis拦截器，用于生成Jedis代理. 调用代理的方法,都将坐JedisPool获取Jedis实例
  * 
  */
-public class JedisInteceptor implements  MethodInterceptor {
+public class JedisInteceptor implements MethodInterceptor {
 
 	private JedisPool jedisPool;
 	

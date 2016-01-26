@@ -19,10 +19,21 @@ import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMa
  * 1.避免每一个方法都需要写@RequestMapping value,原来 @RequestMapping(value="create") => @RequestMapping,具体描述如下
  * @RequestMapping()
  * public String create(ModelMap model)
- * 将自动映射为
- * /create/*
+ * 将自动映射为 /create/*
  * 
- * 2.
+ * 2. 一般springmvc-servlet.xml需要引用以下bean
+ * 
+ *  <bean class="com.github.easy.commons.util.web.mvc.annotation.ConventionAnnotationHandlerMapping"/>
+ * 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+ 
+    <!-- ViewResolver -->
+ 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/pages"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    
  * </pre>
  * 
  *

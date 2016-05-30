@@ -10,8 +10,7 @@ import java.util.zip.ZipOutputStream;
 
 public class ZipUtil {
 	
-	public ZipUtil() {
-	}
+	public ZipUtil() {}
 
 	public static void zip(String zipFileName, String inputDir) {
 		zip(zipFileName, new File(inputDir));
@@ -19,8 +18,7 @@ public class ZipUtil {
 
 	public static void zip(String zipFileName, File inputDir) {
 		try {
-			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
-					zipFileName));
+			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFileName));
 			zip(out, inputDir, "");
 			out.close();
 		} catch (Exception e) {
@@ -62,6 +60,7 @@ public class ZipUtil {
 		}
 	}
 
+	@SuppressWarnings("all")
 	public static void main(String[] temp) {
 		ZipUtil helper = new ZipUtil();
 		helper.zip("d:/tmp/abc.zip", new File("d:/temp/"));

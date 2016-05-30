@@ -13,6 +13,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
 
 public class JsonUtil {
+	
 	private static final Log LOGGER = LogFactory.getLog(JsonUtil.class);
 	
     private static ObjectMapper mapper = new ObjectMapper(); // can reuse, share
@@ -64,7 +65,7 @@ public class JsonUtil {
         }
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("all")
     public static Collection toCollectionObject(String content, Class<? extends Collection> collectionType, Class beanType) {
         if (StringUtils.isEmpty(content) || collectionType == null || beanType == null) {
             return null;

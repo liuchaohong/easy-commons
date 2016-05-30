@@ -38,6 +38,8 @@ import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMa
  * 
  *
  */
+
+@SuppressWarnings("all")
 public class ConventionAnnotationHandlerMapping extends DefaultAnnotationHandlerMapping {
 	
 	public ConventionAnnotationHandlerMapping() {

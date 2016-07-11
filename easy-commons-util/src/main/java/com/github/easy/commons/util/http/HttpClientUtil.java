@@ -1,4 +1,4 @@
-package com.github.easy.commons.util.conn;
+package com.github.easy.commons.util.http;
 
 import java.util.ArrayList;
 import java.util.List;

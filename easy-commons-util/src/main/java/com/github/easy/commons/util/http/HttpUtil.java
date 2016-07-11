@@ -1,4 +1,4 @@
-package com.github.easy.commons.util.conn;
+package com.github.easy.commons.util.http;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
